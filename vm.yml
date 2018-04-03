@@ -1,0 +1,19 @@
+- name: Create Azure VM
+  hosts: localhost
+  connection: local
+  tasks:
+  - name: Create VM
+    azure_rm_virtualmachine:
+      resource_group: MyResourceGroup
+      name: myVM102
+      vm_size: Standard_DS1_v2
+      admin_username: azureuser
+      ssh_password_enabled: false
+      ssh_public_keys:
+        - path: /home/azureuser/.ssh/authorized_keys
+          key_data: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQChEqz6LAxDm5/pDIH+i+0urrYtPDE6S2IiBs8pyZwHiF9VHuysLbdZ2YtpxQbwHcaCS36s/l1NLNOsDv8nr9fW0Jvr8TEusIJdkVtvFVDlZg1478T7M3vUUD4mWpKptNXpcXfvsZsG8YkxkUYYe/iRznS3s333ly+l0tLd/02vibadFlyyPju4/sX1XGdtHA8KdusKzWf7OPZe98hqrd7NJMWTL0adie26SbiBDGAZH/4QlfCcTODEvGsceU8fcNZvPBBhCz6WZfqfHb5blvbqHRdblmi3zIdIVIH08TwWrziVxgTXUBRJPMnheuiJxSok4BBIjZMfvuYBEARHsfZ7 azureuser@ansible"
+      image:
+        offer: CentOS
+        publisher: OpenLogic
+        sku: '7.3'
+        version: latest
